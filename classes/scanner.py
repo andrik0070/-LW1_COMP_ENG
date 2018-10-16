@@ -11,7 +11,7 @@ class Scanner:
         self.program_text_filename = program_text_filename
         self.program_text = None
         self.keywords = keywords
-        self.service_table = []
+        self.lexem_table = []
         self.start_state = start_state
 
     def load_text_from_file(self, program_text_filename=''):
@@ -37,7 +37,21 @@ class Scanner:
                 else:
                     if current_state[0] == 'Identifier':
                         if current_state[0] in self.keywords:
-                            self.service_table.append(())
+                            lexem_row = (current_lexem.getvalue(), 'Keyword')
+                        else:
+                            lexem_row = (current_lexem.getvalue(), 'Identifier')
+                        self.lexem_table.append(lexem_row)
+                    elif current_state[0] in ['NotEqual, Assign']:
+                        self.lexem_table.append((current_lexem.getvalue(), 'OnePositionSeparator'))
+                    else:
+                        self.lexem_table.append((current_lexem.getvalue(), current_state[0]))
+            except
+
+        pprint(self.lexem_table)
+
+
+
+
 
 
 

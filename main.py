@@ -17,10 +17,12 @@ transitions = [
 
     ("Start", "Colon", lambda x: x == ':', False),
     ("Colon", "Assign", lambda x: x == '=', False),
+    ("Colon", "Delimiter", lambda x: x == ' ', True),
     ("Assign", "Assign", lambda x: x == ' ', True),
 
     ("Start", "Less", lambda x: x == '<', False),
     ("Less", "NotEqual", lambda x: x == '>', False),
+    ("Less", "Delimiter", lambda x: x == ' ', True),
     ("NotEqual", "NotEqual", lambda x: x == ' ', True),
 
     ("Start", "Delimiter", lambda x: x in ['.', ';', '(', ')', '=', '-', ',', '[', ']'], False),
@@ -28,8 +30,9 @@ transitions = [
 
     ("Start", "StringLiteral", lambda x: x == "'", False),
     ("StringLiteral", "StringLiteral", lambda x: x != "'", False),
-    ("StringLiteral", "StringLiteralEnd", lambda x: x == "'", False),
-    ("StringLiteralEnd", "StringLiteralEnd", lambda x: x == ' ', True),
+    ("StringLiteral", "StringLiteral", lambda x: x == "'", True),
+    # ("StringLiteral", "StringLiteralEnd", lambda x: x == "'", False),
+    # ("StringLiteralEnd", "StringLiteralEnd", lambda x: x == ' ', True),
 
 
 ]

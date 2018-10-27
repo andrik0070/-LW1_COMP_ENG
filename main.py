@@ -2,10 +2,11 @@ from classes.fsm import fsm
 from classes.scanner import Scanner
 
 keywords = [
-       'var', 'Integer', 'TDrawBuffer', 'Begin', 'if', 'and', 'then', 'End'
+      'procedure', 'var', 'Integer', 'TDrawBuffer', 'Begin', 'if', 'and', 'then', 'End'
 ]
 
 transitions = [
+    ("Start", "Start", lambda x: x == ' ', False),
     ("Start", "Integer", lambda x: x.isdigit(), False),
     ("Integer", "Integer", lambda x: x.isdigit(), False),
     ("Integer", "Integer", lambda x: x == ' ', True),
